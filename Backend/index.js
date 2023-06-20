@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const connectDB = require('./models/db');
 //Routes
 const userRoutes = require('./routes/studentRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 // const atdRoutes = require('./routes/attendanceRoutes');
 // const session = require('express-session');
 // const passport = require('passport');
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
 
 app.use('/' , userRoutes)
+app.use('/' , adminRoutes)
 // app.use('/api/orders' , orderRoutes)
 //middleware
 // app.use( notFound, errorHandler)
