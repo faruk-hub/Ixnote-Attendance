@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./models/db');
 //Routes
-const userRoutes = require('./routes/userAuthRoutes');
+const userRoutes = require('./routes/studentRoutes');
 // const atdRoutes = require('./routes/attendanceRoutes');
 // const session = require('express-session');
 // const passport = require('passport');

@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const hashedPassword = require("../helper/helper");
 
 const studentSchema = mongoose.Schema(
   {
@@ -8,46 +9,38 @@ const studentSchema = mongoose.Schema(
       required: true,
     },
     lastName: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
-      createIndexes: { unique: true },
+      unique: true,
     },
     password: {
       type: String,
       required: true,
     },
-    studentStatus:{
+    studentStatus: {
       type: String,
-      required:true,
+      required: true,
+    },
+    browser: {
+      type: String,
     },
   },
   {
     timestamps: true,
   }
-)
-
+);
 
 studentSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
-    next()
+    next();
   }
-
-  const salt = await bcrypt.genSalt(10)
-  this.password = await bcrypt.hash(this.password, salt)
-})
-
-// userSchema.methods.matchPassword = async function (enteredPassword) {
-//     return await bcrypt.compare(enteredPassword, this.password)
-//   }
-  
+  this.password = await hashedPassword(this.password);
+});
 
 
-  
-const Student = mongoose.model('Student', studentSchema)
 
-module.exports = Student
-  
+module.exports = mongoose.model('Student', studentSchema);
