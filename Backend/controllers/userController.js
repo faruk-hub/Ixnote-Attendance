@@ -5,7 +5,15 @@ const generateToken = require("../Utils/generateToken");
 exports.registerStudent = async (req, res) => {
   // check for duplicate students using email
   try {
+
     const { firstName, lastName, email, password, studentStatus } = req.body;
+
+    if ( !firstName || !lastName || !email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "all fields are required" });
+    }
+
     const studentExists = await Student.findOne({ email });
     console.log(studentExists);
     if (studentExists)
