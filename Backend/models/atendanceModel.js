@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const hashedPassword = require("../helper/helper");
 
-const studentSchema = mongoose.Schema(
+const attendanceSchema = mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -23,6 +23,7 @@ const studentSchema = mongoose.Schema(
     },
     studentStatus: {
       type: String,
+      required: true,
     },
     browser: {
       type: String,
@@ -33,13 +34,5 @@ const studentSchema = mongoose.Schema(
   }
 );
 
-studentSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
-    next();
-  }
-  this.password = await hashedPassword(this.password);
-});
 
-
-
-module.exports = mongoose.model('Student', studentSchema);
+module.exports = mongoose.model('Attendance', attendanceSchema);

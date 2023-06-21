@@ -29,5 +29,5 @@ app.use('/' , adminRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(`Eshop running in ${process.env.NODE_ENV} environment on port ${PORT}`)
+    console.log(`Attendanceapp running in ${process.env.NODE_ENV} environment on port ${PORT}`)
 })
