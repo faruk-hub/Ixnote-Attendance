@@ -1,5 +1,6 @@
 
 const express = require('express');
+const cors = require("cors")
 const bodyParser = require('body-parser');
 const connectDB = require('./models/db');
 //Routes
@@ -16,6 +17,10 @@ const app = express();
 // dotEnv.config()
 
 // connectDB()
+
+app.use(cors({
+    origin: '*'
+}));
 
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
