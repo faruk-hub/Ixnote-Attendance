@@ -1,33 +1,30 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const hashedPassword = require("../helper/helper");
+// const bcrypt = require('bcryptjs');
+// const hashedPassword = require("../helper/helper");
 
 const attendanceSchema = mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    studentStatus: {
-      type: String,
-      required: true,
-    },
+    student: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Student",
+      required: true
+     },
     browser: {
       type: String,
     },
+    atdStatus: {
+      type: String,
+      required: true
+    },
+    location:{
+      type: String,
+    },
+    deviceID:{
+      type: String,
+    },
+    ip_address:{
+      type: String
+    }
   },
   {
     timestamps: true,

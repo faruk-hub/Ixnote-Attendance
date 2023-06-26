@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 app.use('/' , userRoutes)
 app.use('/admin' , adminRoutes)
 app.use('/' , atdRoutes)
-// app.use('/api/orders' , orderRoutes)
+
 //middleware
 // app.use( notFound, errorHandler)
 
