@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require("cors")
 const bodyParser = require('body-parser');
@@ -20,8 +19,9 @@ app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
 //routes
 app.use('/' , userRoutes)
+app.use('/std' , atdRoutes)
 app.use('/admin' , adminRoutes)
-app.use('/' , atdRoutes)
+
 
 //middleware
 // app.use( notFound, errorHandler)

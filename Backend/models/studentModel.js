@@ -27,6 +27,13 @@ const studentSchema = mongoose.Schema(
     browser: {
       type: String,
     },
+    ip_address: {
+      type: String,
+    },
+    mac_address: {
+      type: String,
+      reuired: true,
+    },
   },
   {
     timestamps: true,
