@@ -1,12 +1,22 @@
 const bcrypt = require("bcryptjs");
 const Student = require("../models/studentModel");
 const generateToken = require("../Utils/generateToken");
+// const http = require('http')
+const macAddress = require('macaddress')
+// const getmac = require('getmac')
 
+// const callMac = () =>{
+//     return getmac.default()
+// }
+
+// var clientIp = requestIp.getClientIp(req)
 exports.registerStudent = async (req, res) => {
   // check for duplicate students using email
   try {
 
     const { firstName, lastName, email, password, studentStatus } = req.body;
+    const mac_address = await macAddress.one()
+    // console.log(mac); 
 
     if ( !firstName || !lastName || !email || !password) {
       return res
@@ -27,6 +37,7 @@ exports.registerStudent = async (req, res) => {
       email,
       password,
       studentStatus,
+      mac_address,
     });
 
     if (student) {
