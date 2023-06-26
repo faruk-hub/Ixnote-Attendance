@@ -20,8 +20,8 @@ exports.markAttendance = async(req, res) => {
     //         })
     let{ student } = req.params
     const { browser, location, ip_address, deviceID, atdStatus} = req.body
-    console.log("marked")
-    res.json({message : "marked"})
+    // console.log("marked")
+    // res.json({message : "marked"})
     try{
         const markedAtd = await Attendance.create({student, browser, location,atdStatus, ip_address, deviceID})
         if (markedAtd) {
@@ -32,7 +32,7 @@ exports.markAttendance = async(req, res) => {
           } else {
             return res
               .status(401)
-              .json({ success: false, data: "Failed to marl attendance" });
+              .json({ success: false, data: "Failed to mark attendance" });
           }
         res.status(200).json(workout)
     }catch(error){
