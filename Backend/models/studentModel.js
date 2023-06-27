@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const hashedPassword = require("../helper/helper");
+const helper = require("../helper/helper");
 
 const studentSchema = mongoose.Schema(
   {
@@ -40,11 +40,13 @@ const studentSchema = mongoose.Schema(
   }
 );
 
+
+
 studentSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();
   }
-  this.password = await hashedPassword(this.password);
+  this.password = await helper.hashedPassword(this.password);
 });
 
 

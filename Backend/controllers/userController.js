@@ -1,13 +1,8 @@
 const bcrypt = require("bcryptjs");
 const Student = require("../models/studentModel");
 const generateToken = require("../Utils/generateToken");
-// const http = require('http')
 const macAddress = require('macaddress')
-// const getmac = require('getmac')
 
-// const callMac = () =>{
-//     return getmac.default()
-// }
 
 // var clientIp = requestIp.getClientIp(req)
 exports.registerStudent = async (req, res) => {
