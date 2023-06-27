@@ -21,9 +21,12 @@ const distanceToHub = ( hubLat, hubLon, userLat, userLon, ) => {
       Math.sin(dLon/2) * Math.sin(dLon/2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c;
-    if (d>1) return Math.round(d)+"km";
-    else if (d<=1) return Math.round(d*1000)+"m";
-    return d;
+    // if (d>1) return Math.round(d)+"km";
+    // else if (d<=1) return Math.round(d*1000)+"m";
+    var dKM = Math.round(d) // distance in kilometers
+    var dMeters =  Math.round(d*1000)  // distance in kilometers
+    // return d;
+    return dMeters;
   }
   
   // hubLattitude =  9.905605 
