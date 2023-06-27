@@ -1,28 +1,34 @@
 const Attendance = require('../models/atendanceModel')
 const Student = require("../models/studentModel");
-
+const macAddress = require('macaddress')
+const helper = require('../helper/helper')
+require('dotenv').config()
 
 exports.markAttendance = async(req, res) => {
-    // const stdDetails = {
-    //     student_id: 1,
-    //     status:     req.body.status,
-    //     date:       req.body.date,
-    //     browser:    req.body.browser,
-    //     ip_address: req.socket.remoteAddress 
-    // }
-     // sql.query(`INSERT INTO attendance(student_id, status, browser, ip_address) VALUES(${details.student_id}, '${details.status}', '${details.browser}', '${details.ip_address}')`, (err, data) => {
-    //             if(err){
-    //                 res.json(err)
-    //             }
-    //             else{
-    //                 res.json(data)
-    //             }
-    //         })
-    let{ student } = req.params
-    const { browser, location, ip_address, deviceID, atdStatus} = req.body
+    
+    const userLat = 9.909458
+    const userLon = 8.882012
+    const { student } = req.params
+    const { ip_address} = req.body
+    let atdStatus
+    const currentMacAddress = await macAddress.one()
+    const distance = helper.distanceToHub( process.env.hubLat, process.env.hubLon, userLat,userLon)
+    // console.log(distance)
+    // const currentMacAddress = await macAddress.one()
+
     try{
-        const markedAtd = await Attendance.create({student, browser, location , atdStatus, ip_address, deviceID})
+        const storedData = await Student.findById( student ).select("mac_address")
+        console.log( String(currentMacAddress))
+        console.log( String(storedData.mac_address))
+        if( String(currentMacAddress) == String(storedData.mac_address)){
+          console.log("true")
+        }else{
+          console.log("false")
+        }
+          const markedAtd = await Attendance.create({student, atdStatus, ip_address})
+
         if (markedAtd) {
+            // console.log(storedData.mac_address)
             res.status(201).json({
               success: true,
               data: markedAtd,
@@ -32,6 +38,8 @@ exports.markAttendance = async(req, res) => {
               .status(401)
               .json({ success: false, data: "Failed to mark attendance" });
           }
+        // }
+        
     }catch(error){
         res.status(400).json({error: error.message})
     }

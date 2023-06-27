@@ -13,8 +13,10 @@ const attendanceSchema = mongoose.Schema(
       type: String,
     },
     atdStatus: {
-      type: String,
+      type: Boolean,
+      default: false,
       required: true
+       
     },
     location:{
       type: String,
