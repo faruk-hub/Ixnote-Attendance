@@ -9,11 +9,9 @@ router.route('/new/register')
 router.route('/login')
       .post(userController.loginStudent)
       
-
-
-// router.route('/:id')
-//     .get()
-//     .patch()
+router.route('/myprofile/:id')
+      .get(userController.viewProfile)
+      .patch(userController.updateProfile)
 //     .delete()
     
     
