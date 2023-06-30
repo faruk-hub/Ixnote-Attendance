@@ -4,7 +4,7 @@ const atdController = require('../controllers/attendanceController')
 
 router.route('/attendance/:student')
       .post(atdController.markAttendance)
-
+      
 
 
 
