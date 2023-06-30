@@ -23,9 +23,10 @@ const distanceToHub = ( hubLat, hubLon, userLat, userLon, ) => {
     var d = R * c;
     // if (d>1) return Math.round(d)+"km";
     // else if (d<=1) return Math.round(d*1000)+"m";
+    // return d;
+
     var dKM = Math.round(d) // distance in kilometers
     var dMeters =  Math.round(d*1000)  // distance in kilometers
-    // return d;
     return dMeters;
   }
   

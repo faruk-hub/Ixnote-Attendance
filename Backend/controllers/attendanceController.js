@@ -19,7 +19,7 @@ exports.markAttendance = async(req, res) => {
     try{
         const storedData = await Student.findById( student ).select("mac_address")
 
-        if((currentMacAddress === storedData.mac_address) && (distance < 100)){
+        if((currentMacAddress === storedData.mac_address) && (distance > 100)){
           console.log("present")
           const markedAtd = await Attendance.create({student, atdStatus, ip_address})
           if (markedAtd) {
