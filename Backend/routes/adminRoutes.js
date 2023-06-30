@@ -3,16 +3,18 @@ const router = express.Router()
 const adminController = require('../controllers/adminController')
 
 
-router.route('/admin')
-      .get(adminController.getAllStudents)
+// router.route('/students')
+//       .get(adminController.getAllStudents)
+
+router.route('student/:id')
+      .get(adminController.getSingleStudent)
+//     .patch()
+//     .delete()
     
       
 // router.route('/attendance')
 
-// router.route('/:id')
-//     .get()
-//     .patch()
-//     .delete()
+
     
     
 module.exports = router    
